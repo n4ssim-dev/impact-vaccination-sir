@@ -21,16 +21,6 @@ S0 = (1 - pv)* N
 # Nombre initial de vaccinés
 R0 = pv * N
 
-'''
-    𝑆0=(1−𝑝𝑣)⋅𝑁
-    𝑅0=𝑝𝑣⋅𝑁
-
-    𝑆0 = nombre initial de personnes susceptibles, 
-    𝑅0 = nombre initial de personnes vaccinées (donc immunisées), 
-    𝑝𝑣 = proportion de vaccinés, 
-    𝑁 = population totale.
-'''
-
 def simulate_sir(S0, I0, R0, transmission, retrait, jours):
     S = [S0]
     I = [I0]
@@ -52,7 +42,8 @@ def simulate_sir(S0, I0, R0, transmission, retrait, jours):
 scenarios = {
     "0% vaccinés": 0.0,
     "30% vaccinés": 0.3,
-    "60% vaccinés": 0.6
+    "60% vaccinés": 0.6,
+    "90% vaccinés": 0.9
 }
 plt.figure(figsize=(10, 6))
 for label, pv in scenarios.items():
