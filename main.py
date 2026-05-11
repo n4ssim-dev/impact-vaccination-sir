@@ -27,7 +27,7 @@ def simulate_sir(S0, I0, R0, transmission, retrait, jours):
     R = [R0]
     for t in range(0, jours):
         # TODO : calculer dS
-        dS = N - S[t] - I[t] - R[t]
+        dS = S[t-1] - S[t]
         # TODO : calculer dI
         dI = transmission * I[t] * (S[t] / N)
         # TODO : calculer dR
@@ -42,8 +42,7 @@ def simulate_sir(S0, I0, R0, transmission, retrait, jours):
 scenarios = {
     "0% vaccinés": 0.0,
     "30% vaccinés": 0.3,
-    "60% vaccinés": 0.6,
-    "90% vaccinés": 0.9
+    "60% vaccinés": 0.6
 }
 plt.figure(figsize=(10, 6))
 for label, pv in scenarios.items():
