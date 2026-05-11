@@ -37,14 +37,14 @@ def simulate_sir(S0, I0, R0, transmission, retrait, jours):
     R = [R0]
     for t in range(0, jours):
         # TODO : calculer dS
-        dS = I 
+        dS = N - S[t] - I[t] - R[t]
         # TODO : calculer dI
-        dI = transmission * float(I[t]) * (S[t] / N)
+        dI = transmission * I[t] * (S[t] / N)
         # TODO : calculer dR
-        dR = retrait * float(I[t])
+        dR = retrait * I[t]
         # TODO : mettre à jour S, I, R
-        S.append(S[t] - dI)
-        I.append(I[t] + dI - dR)
+        S.append(S[t] + dS)
+        I.append(I[t] + dI)
         R.append(R[t] + dR)
     return np.array(S), np.array(I), np.array(R)
   
@@ -63,7 +63,7 @@ for label, pv in scenarios.items():
     S, I, R = simulate_sir(S0, I0, R0, transmission, retrait, jours)
     # TODO : tracer I(t)
     plt.plot(I, label=label)
-plt.title("Evolution du nombres d'infectes")
+plt.title("Evolution du nombres d'infectes en fonction de la vaccination.")
 plt.xlabel("Jour")
 plt.ylabel("Nombre d'infectés")
 plt.legend()
